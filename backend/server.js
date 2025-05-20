@@ -49,9 +49,25 @@ const movies = [
   
 
 
-app.get('/books', (req, res)=>{
+app.get('/movies', (req, res)=>{
     res.json(movies)
 
+})
+
+
+app.post('/addmovie', (req, res)=>{
+  const { title, description, posterURL, rating } = req.body;
+
+  const newMovie = {
+    id: movies.length + 1,
+    title, 
+    description,
+    posterURL,
+    rating
+  }
+
+  movies.push(newMovie);
+  res.status(201).json(newMovie);
 })
 
 app.listen(PORT, ()=>{

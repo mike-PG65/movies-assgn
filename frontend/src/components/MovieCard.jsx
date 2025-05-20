@@ -10,7 +10,7 @@ const MovieCard = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/books");
+        const response = await axios.get("http://localhost:4000/movies");
         console.log(response)
         setMovies(response.data); // Store the response in state
       } catch (error) {
