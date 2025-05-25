@@ -30,8 +30,15 @@ const FilterMovies = () => {
       if (searchTerm.trim() === '') {
         setFilteredMovies([]); // show all if empty search
       } else {
-        const results = movies.filter(movie =>
-          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+        const results = movies.filter(movie=>{
+          const searchLower = searchTerm.toLowerCase()
+          return (
+          
+              movie.title.toLowerCase().includes(searchLower) || 
+              Math.floor(Number(movie.rating)) === Math.floor(Number(searchTerm))
+            )
+          
+        }
         );
         setFilteredMovies(results);
       }

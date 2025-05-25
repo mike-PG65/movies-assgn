@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
 
 const MovieCard = () => {
 
@@ -27,15 +28,19 @@ const MovieCard = () => {
         {
           movies.length > 0 ? (
             movies.map(movie =>(
-              <div key={movie.id} className='h-80  bg-amber-200'>
-                <img src={movie.posterURL} alt={movie.title} className='h-1/2 w-full object-cover'/>
+              
+              <div key={movie.id} className='h-80 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 group'>
+                <Link to={`/movies/${movie.id}`}>
+                <img src={movie.posterURL} alt={movie.title} className='h-1/2 w-full object-cover transition-transform duration-500 group-hover:scale-105'/>
                 <div className='px-3 py-2'>
                   <p className='text-xl '>{movie.title}</p>
                   <p>{movie.description}</p>
                   <p>{movie.rating}</p>
 
                 </div>
+                </Link>
               </div>
+             
             ))
 
           ) : (

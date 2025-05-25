@@ -21,7 +21,7 @@ const movies = [
       id: '2',
       title: 'The Matrix',
       description: 'A hacker discovers reality is a simulation and joins a rebellion against the machines.',
-      posterURL: 'https://m.media-amazon.com/images/I/51EG732BV3L.jpg',
+      posterURL: 'https://i.pinimg.com/736x/62/f2/41/62f241fd34d94f303a71df7fc7274fbb.jpg',
       rating: 8.7
     },
     {
@@ -68,6 +68,21 @@ app.post('/addmovie', (req, res)=>{
 
   movies.push(newMovie);
   res.status(201).json(newMovie);
+})
+
+
+app.get('/movies/:bookId', (req, res)=>{
+  const {bookId} = req.params
+
+  const movie = movies.find(m => m.id === bookId)
+
+  if(!movie){
+    return res.status(404).json({error: "Product not found!!"})
+  }
+
+  res.json(movie).status(200);
+
+
 })
 
 app.listen(PORT, ()=>{
